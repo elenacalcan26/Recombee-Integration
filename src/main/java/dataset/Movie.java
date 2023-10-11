@@ -1,50 +1,42 @@
 package dataset;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.opencsv.bean.CsvBindByName;
 
 public class Movie {
+    @CsvBindByName
+    private int rank;
+
+    @CsvBindByName
     private String title;
-    private List<String> genre;
+
+    @CsvBindByName
+    private String genre;
+    @CsvBindByName
     private String description;
+    @CsvBindByName
     private String director;
-    private List<String> actors;
+    @CsvBindByName
+    private String actors;
+    @CsvBindByName
     private int year;
+    @CsvBindByName(column = "Runtime (Minutes)")
     private int runtime;
+    @CsvBindByName
     private double rating;
+    @CsvBindByName
     private long votes;
+    @CsvBindByName(column = "Revenue (Millions)")
     private double revenue;
+    @CsvBindByName
     private int metascore;
 
-    public Movie(String title,
-                 List<String> genre,
-                 String description,
-                 String director,
-                 List<String> actors,
-                 int year,
-                 int runtime,
-                 double rating,
-                 long votes,
-                 double revenue,
-                 int metascore) {
-        this.title = title;
-        this.genre = new ArrayList<>(genre);
-        this.description = description;
-        this.director = director;
-        this.actors = new ArrayList<>(actors);
-        this.year = year;
-        this.runtime = runtime;
-        this.rating = rating;
-        this.votes = votes;
-        this.revenue = revenue;
-        this.metascore = metascore;
-    }
+    public Movie() {}
 
     public String getTitle() {
         return title;
     }
 
-    public List<String> getGenre() {
+    public String getGenre() {
         return genre;
     }
 
@@ -56,7 +48,7 @@ public class Movie {
         return director;
     }
 
-    public List<String> getActors() {
+    public String getActors() {
         return actors;
     }
 

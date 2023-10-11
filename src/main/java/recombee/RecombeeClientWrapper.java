@@ -12,6 +12,4 @@ public class RecombeeClientWrapper {
     public RecombeeClientWrapper() {
         client = new RecombeeClient(DB_NAME, TOKEN).setRegion(Region.EU_WEST);
     }
-
-
 }
