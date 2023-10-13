@@ -11,6 +11,6 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException, ApiException {
         List<Movie> movieDataset = DatasetParser.parseMovieDataset();
         RecombeeClientWrapper recombeeClientWrapper = new RecombeeClientWrapper((ArrayList<Movie>) movieDataset);
-//        recombeeClientWrapper.sendItemValues();
+        recombeeClientWrapper.populateRecombeeDatabase();
     }
 }
