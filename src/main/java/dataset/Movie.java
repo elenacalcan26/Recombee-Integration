@@ -32,6 +32,8 @@ public class Movie {
 
     public Movie() {}
 
+    public int getRank() { return rank; }
+
     public String getTitle() {
         return title;
     }
