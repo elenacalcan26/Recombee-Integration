@@ -2,14 +2,16 @@ package recombee;
 
 import com.recombee.api_client.RecombeeClient;
 import com.recombee.api_client.api_requests.AddItemProperty;
+import com.recombee.api_client.api_requests.AddUser;
 import com.recombee.api_client.api_requests.SetItemValues;
 import com.recombee.api_client.exceptions.ApiException;
 import com.recombee.api_client.util.Region;
 import dataset.Movie;
+import user.UsersIds;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.logging.*;
 
 public class RecombeeClientWrapper {
     private static String DB_NAME = "acs-sac-dev";
@@ -20,6 +22,7 @@ public class RecombeeClientWrapper {
     private RecombeeClient client;
 
     private ArrayList<Movie> movieDataset;
+    private Logger logger = Logger.getLogger(RecombeeClientWrapper.class.getName());
 
     public RecombeeClientWrapper(ArrayList<Movie> movieDataset) {
         client = new RecombeeClient(DB_NAME, PRIVATE_TOKEN).setRegion(Region.EU_WEST);
@@ -64,4 +67,17 @@ public class RecombeeClientWrapper {
             ).setCascadeCreate(true));
         }
     }
+
+    public void addUsers() throws ApiException {
+      logger.info("Add Users Ids to the database!");
+
+      client.send(new AddUser(UsersIds.USER1));
+      client.send(new AddUser(UsersIds.USER2));
+      client.send(new AddUser(UsersIds.USER3));
+      client.send(new AddUser(UsersIds.USER4));
+      client.send(new AddUser(UsersIds.USER5));
+
+      logger.info("Done! Users Ids are added to the database!");
+    }
+
 }

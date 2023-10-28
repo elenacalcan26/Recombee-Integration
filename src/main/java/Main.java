@@ -9,8 +9,12 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException, ApiException {
+        // Milestone 1
         List<Movie> movieDataset = DatasetParser.parseMovieDataset();
         RecombeeClientWrapper recombeeClientWrapper = new RecombeeClientWrapper((ArrayList<Movie>) movieDataset);
-        recombeeClientWrapper.populateRecombeeDatabase();
+//        recombeeClientWrapper.populateRecombeeDatabase();
+
+        // Milestone 2
+        recombeeClientWrapper.addUsers();
     }
 }
