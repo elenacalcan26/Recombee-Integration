@@ -2,6 +2,7 @@ import com.recombee.api_client.exceptions.ApiException;
 import dataset.Movie;
 import parser.DatasetParser;
 import recombee.RecombeeClientWrapper;
+import user.UsersIds;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -15,6 +16,11 @@ public class Main {
 //        recombeeClientWrapper.populateRecombeeDatabase();
 
         // Milestone 2
-        recombeeClientWrapper.addUsers();
+//        recombeeClientWrapper.addUsers();
+
+//        recombeeClientWrapper.addUserInteractions();
+
+        recombeeClientWrapper.getUserRecommendation(UsersIds.USER1, 3);
+        recombeeClientWrapper.getUserRecommendation(UsersIds.USER2, 3);
     }
 }

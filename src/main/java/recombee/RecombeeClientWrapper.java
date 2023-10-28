@@ -1,16 +1,19 @@
 package recombee;
 
 import com.recombee.api_client.RecombeeClient;
-import com.recombee.api_client.api_requests.AddItemProperty;
-import com.recombee.api_client.api_requests.AddUser;
-import com.recombee.api_client.api_requests.SetItemValues;
+import com.recombee.api_client.api_requests.*;
+import com.recombee.api_client.bindings.Recommendation;
+import com.recombee.api_client.bindings.RecommendationResponse;
 import com.recombee.api_client.exceptions.ApiException;
 import com.recombee.api_client.util.Region;
 import dataset.Movie;
 import user.UsersIds;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.logging.*;
 
 public class RecombeeClientWrapper {
@@ -80,4 +83,111 @@ public class RecombeeClientWrapper {
       logger.info("Done! Users Ids are added to the database!");
     }
 
+    public void addUserInteractions() throws ApiException {
+        client.send(new AddDetailView(UsersIds.USER1, "5")
+          .setCascadeCreate(true)
+        );
+
+        client.send(new AddBookmark(UsersIds.USER1, "5")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER1, "51")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddBookmark(UsersIds.USER1, "51")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER1, "76")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER1, "102")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER2, "158")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddBookmark(UsersIds.USER2, "158")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER2, "998")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddBookmark(UsersIds.USER2, "998")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER2, "166")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER2, "225")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER3, "259")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER3, "270")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER3, "303")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER3, "313")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER4, "519")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER4, "173")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER4, "368")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER5, "432")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER5, "588")
+                .setCascadeCreate(true)
+        );
+
+        client.send(new AddDetailView(UsersIds.USER5, "661")
+                .setCascadeCreate(true)
+        );
+    }
+
+    public void getUserRecommendation(String userId, long count) throws ApiException {
+        System.out.println("Recommendations for " + userId);
+
+        RecommendationResponse result = client.send(new RecommendItemsToUser(userId, count)
+          .setCascadeCreate(true)
+          .setReturnProperties(true)
+        );
+
+        Recommendation[] recommendations = result.getRecomms();
+        for (int i = 0; i < recommendations.length; i++)
+        {
+            System.out.print(recommendations[i].getId() + " ");
+            System.out.println(recommendations[i].getValues().get("title"));
+        }
+
+        System.out.println();
+    }
 }
